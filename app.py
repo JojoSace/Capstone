@@ -4,7 +4,6 @@ from PIL import Image
 import plotly.express as px
 
 import plotly as py
-init_notebook_mode(connected=True)
 from plotly.subplots import make_subplots
 
 st.set_page_config(page_title="Filipino Income and Expenditure", page_icon="🇵🇭", layout="wide")
