@@ -3,10 +3,8 @@ import streamlit as st
 from PIL import Image
 import plotly.express as px
 
-from plotly.offline import init_notebook_mode, iplot, plot
 import plotly as py
 init_notebook_mode(connected=True)
-import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 
 st.set_page_config(page_title="Filipino Income and Expenditure", page_icon="🇵🇭", layout="wide")
