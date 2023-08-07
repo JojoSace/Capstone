@@ -2,7 +2,7 @@
 
 Filipino Income and Expenditure Dashboard built in Python and the Streamlit library to visualize Plotly Charts.
 
-From the Capstone Project made by DATA EXPLORERS group during a 4-Week Data Analytics Bootcamp by Data Vanguard Philippines.  
+From the Capstone Project made by DATA EXPLORERS group during a 6-Week Data Analytics Bootcamp by Data Vanguard Philippines.  
 
 ## Run the app
 ```Powershell
