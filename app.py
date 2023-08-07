@@ -82,9 +82,6 @@ def histogram_y(value):
     )
     fig_hist.update_layout(barmode='group', height=800, yaxis={'categoryorder':'total descending'})
     st.plotly_chart(fig_hist, use_container_width=True)
-    
-# Pie Chart Function
-
 
 st.set_page_config(page_title="FILIPINO INCOME AND EXPENDITURE: MULTIVARIATE ANALYSIS", page_icon="🇵🇭", layout="wide")
 
@@ -103,7 +100,6 @@ with st.sidebar:
     elif(sidebar_plot == 'Geomapping (by Region)'):
         st.subheader('📂 Features')
         sidebar_features = st.selectbox('Select a feature:',('Annual Income', 'Annual Expenditure', 'Monthly Income per Capita', 'Monthly Expenditure per Capita'))
-
 
 # ---- HISTOGRAM ----
 if (sidebar_plot == 'Histogram (by Income Class)') and (sidebar_features == 'Household Head Highest Grade Completed'):
@@ -138,10 +134,11 @@ if (sidebar_features == 'Highest Educational Degree Completed by Household Head'
              hole=.3,
              color_discrete_sequence=px.colors.qualitative.Antique)
     fig_pie.update_traces(textposition='inside')
-    fig_pie.update_layout(uniformtext_minsize=15, uniformtext_mode='hide',
+    fig_pie.update_layout(title_text='Highest Educational Degree Completed by Household Head',uniformtext_minsize=15, uniformtext_mode='hide',
                   height=1000, title={'font': {'size': 30}}, font={'size': 20})
     fig_pie.update_layout(barmode='group', yaxis={'categoryorder':'total descending'})
-    st.plotly_chart(fig_pie, use_container_width=True)     
+    st.plotly_chart(fig_pie, use_container_width=True)
+
     #pie chart grade completed by income class
     # Pie Chart Labels
     plabel = employment_poor['Household Head Highest Grade Completed'].value_counts().index
