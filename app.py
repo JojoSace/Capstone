@@ -130,6 +130,8 @@ elif (sidebar_plot == 'Histogram (by Income Class)') and (sidebar_features == 'H
         
 # ---- PIE CHART ----
 if (sidebar_features == 'Highest Educational Degree Completed by Household Head') and (sidebar_plot == 'Pie Chart (by Income Class)'):
+    st.write("🛠 FIXING...")
+  
     values = data['Highest Educational Degree Completed by Household Head'].value_counts()
     color = data['Highest Educational Degree Completed by Household Head'].value_counts().index
     fig_pie = px.pie(data, values=values, color=color, names=color,
@@ -170,6 +172,7 @@ if (sidebar_features == 'Highest Educational Degree Completed by Household Head'
     st.plotly_chart(fig_pie_income, use_container_width=True)
     
 elif (sidebar_features == 'Household Head Job or Business Indicator') and (sidebar_plot == 'Pie Chart (by Income Class)'):
+    st.write("🛠 FIXING...")
 
     # pie chart of grade completed
     values = data['Household Head Job or Business Indicator'].value_counts()
@@ -213,6 +216,7 @@ elif (sidebar_features == 'Household Head Job or Business Indicator') and (sideb
     st.plotly_chart(fig_pie_income, use_container_width=True)
     
 elif (sidebar_features == 'Household Head Class of Worker') and (sidebar_plot == 'Pie Chart (by Income Class)'):
+    st.write("🛠 FIXING...")
     
     # pie chart of grade completed
     values = data['Household Head Class of Worker'].value_counts()
@@ -258,10 +262,18 @@ elif (sidebar_features == 'Household Head Class of Worker') and (sidebar_plot ==
 # ---- GEOMAPPING ----
 if (sidebar_features == 'Annual Income') and (sidebar_plot == 'Geomapping (by Region)'):
     st.image(annual_income, output_format="auto")
+    if st.checkbox("VIEW DATASET"):
+        dataset()
 elif (sidebar_features == 'Annual Expenditure') and (sidebar_plot == 'Geomapping (by Region)'):
     st.image(annual_expenditure, output_format="auto")
+    if st.checkbox("VIEW DATASET"):
+        dataset()
 elif (sidebar_features == 'Monthly Income per Capita') and (sidebar_plot == 'Geomapping (by Region)'):
     st.image(monthly_income, output_format="auto")
+    if st.checkbox("VIEW DATASET"):
+        dataset()
 elif (sidebar_features == 'Monthly Expenditure per Capita') and (sidebar_plot == 'Geomapping (by Region)'):
     st.image(monthly_expenditure, output_format="auto")
+    if st.checkbox("VIEW DATASET"):
+        dataset()
     
