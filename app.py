@@ -1,13 +1,14 @@
 import pandas as pd
 import streamlit as st
 from PIL import Image
-import plotly.graph_objs as go
 import plotly.express as px
 
+
 import plotly as py
+import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 
-st.set_page_config(page_title="Filipino Income and Expenditure", page_icon="🇵🇭", layout="wide")
+#---- PREPARE DATA --
 
 # Load csv file into pandas dataframe
 data = pd.read_csv('Capstone_DW.csv')
@@ -34,98 +35,111 @@ employment_middle = data[data['Income Class'] == 'Middle Class']
 employment_rich = data[data['Income Class'] == 'Rich']
 
 # Import geomapping images
-annual_income = Image.open("Plots/Income_by_Region.png")
-annual_expenditure = Image.open("Plots/Expenditure_by_Region.png")
-monthly_income = Image.open("Plots/Monthly_Income_by_Region.png")
-monthly_expenditure = Image.open("Plots/Monthly_Expenditure_by_Region.png")
+annual_income = Image.open(".\Plots\Income_by_Region.png")
+annual_expenditure = Image.open(".\Plots\Expenditure_by_Region.png")
+monthly_income = Image.open(".\Plots\Monthly_Income_by_Region.png")
+monthly_expenditure = Image.open(".\Plots\Monthly_Expenditure_by_Region.png")
 
-# ---- MAINPAGE ----
-st.title("💸 FILIPINO INCOME AND EXPENDITURE: MULTIVARIATE ANALYSIS")
-st.subheader("The Philippines has a high poverty rate, with about 16.6% of the population living below the poverty line. There is a need to understand the factors that contribute to poverty in the Philippines, in order to develop effective policies to alleviate it.")
-st.subheader("This dashboard will help you understand the factors that contribute to poverty in the Philippines, in order to develop effective policies to alleviate it.")
+# ---- FUNCTIONS ----
 
-st.subheader("The dataset is from a 2018 nationwide Family Income and Expenditure Survey (FIES) conducted every three (3) years by the Philippine Statistics Authority. (https://www.kaggle.com/datasets/grosvenpaul/family-income-and-expenditure)")
-st.write(data)
-left_column, right_column = st.columns(2)
-with left_column:
-    st.subheader("Total Instances:")
-    st.subheader(f"{data.shape[0]} Household Head")
-with right_column:
-    st.subheader("Total Features:")
-    st.subheader(f"{data.shape[1]} Variables")
-st.markdown("""---""")
+# Dataset Function
+def dataset():
+    st.title("DATASET OVERVIEW")
+    st.write(data)
+    left_column, right_column = st.columns(2)
+    with left_column:
+        st.subheader("Total Instances:")
+        st.subheader(f"{data.shape[0]} Families")
+    with right_column:
+        st.subheader("Total Features:")
+        st.subheader(f"{data.shape[1]} Variables")
+    st.markdown("""---""") 
+
+# Histogram Function
+def histogram_x(value):
+    st.title(value)
+    fig_hist = px.histogram(data, x =value, 
+                   color = 'Income Class', color_discrete_sequence=px.colors.qualitative.Antique)
+    fig_hist.update_layout(
+        xaxis_title=value.replace('Household Head', ''),
+        yaxis_title='Household Head',
+        font=dict(
+            size=20
+            )
+    )
+    fig_hist.update_layout(barmode='group', height=800, yaxis={'categoryorder':'total descending'})
+    st.plotly_chart(fig_hist, use_container_width=True)
+def histogram_y(value):
+    fig_hist = px.histogram(data, y = value, 
+                    color = 'Income Class', color_discrete_sequence=px.colors.qualitative.Antique)
+    fig_hist.update_layout(
+        title=value,
+        yaxis_title=value.replace('Household Head', ''),
+        xaxis_title='Household Head',
+        font=dict(
+            size=20
+            )
+    )
+    fig_hist.update_layout(barmode='group', height=800, yaxis={'categoryorder':'total descending'})
+    st.plotly_chart(fig_hist, use_container_width=True)
+    
+# Pie Chart Function
+
+
+st.set_page_config(page_title="FILIPINO INCOME AND EXPENDITURE: MULTIVARIATE ANALYSIS", page_icon="🇵🇭", layout="wide")
 
 # ---- SIDEBAR ----
 with st.sidebar:
-    st.subheader('EXPLOTATORY DATA ANALYSIS')
-    st.subheader('Plot Style')
+    st.subheader('📖 EXPLORATORY DATA ANALYSIS')
+    st.subheader('📊 Plot Style')
     sidebar_plot = st.selectbox('Select a plot style:',('Histogram (by Income Class)', 'Pie Chart (by Income Class)', 'Geomapping (by Region)'))
     if(sidebar_plot == 'Histogram (by Income Class)'):
-        st.subheader('Features')
-        sidebar_features = st.selectbox('Select a feature:',('Highest Educational Degree Completed by Household Head', 'Household Head Job or Business Indicator', 'Household Head Class of Worker'))
+        st.subheader('📂 Features')
+        sidebar_features = st.selectbox('Select a feature:',('Household Head Highest Grade Completed', 'Household Head Job or Business Indicator', 'Household Head Class of Worker'))
+        status = st.radio("Select Orientation: ", ('Vertical', 'Horizontal'))
     elif(sidebar_plot == 'Pie Chart (by Income Class)'):
-        st.subheader('Features')
+        st.subheader('📂 Features')
         sidebar_features = st.selectbox('Select a feature:',('Highest Educational Degree Completed by Household Head', 'Household Head Job or Business Indicator', 'Household Head Class of Worker'))  
     elif(sidebar_plot == 'Geomapping (by Region)'):
-        st.subheader('Features')
+        st.subheader('📂 Features')
         sidebar_features = st.selectbox('Select a feature:',('Annual Income', 'Annual Expenditure', 'Monthly Income per Capita', 'Monthly Expenditure per Capita'))
 
-# ---- HISTOGRAM ----
-if (sidebar_features == 'Highest Educational Degree Completed by Household Head') and (sidebar_plot == 'Histogram (by Income Class)'):
-    fig_hist = px.histogram(data, y ='Household Head Highest Grade Completed', 
-                   color = 'Income Class', color_discrete_sequence=px.colors.qualitative.Antique)
-    fig_hist.update_layout(
-        title='Highest Educational Degree Completed by Household Head',
-        xaxis_title='Household Head',
-        yaxis_title='Highest Educational Degree Completed', 
-        font=dict(
-            size=20
-            )
-    )
-    fig_hist.update_layout(barmode='group', yaxis={'categoryorder':'total descending'}, height=1000)
-    st.plotly_chart(fig_hist, use_container_width=True)
-elif (sidebar_features == 'Household Head Job or Business Indicator') and (sidebar_plot == 'Histogram (by Income Class)'):
-    fig_hist = px.histogram(data, x ='Household Head Job or Business Indicator', 
-                   color = 'Income Class', color_discrete_sequence=px.colors.qualitative.Antique)
-    fig_hist.update_layout(
-        title='Household Head Job or Business Indicator',
-        xaxis_title='Job or Business',
-        yaxis_title='Household Head',
-        font=dict(
-            size=20
-            )
-    )
-    fig_hist.update_layout(barmode='group', yaxis={'categoryorder':'total descending'})
-    st.plotly_chart(fig_hist, use_container_width=True)
-elif (sidebar_features == 'Household Head Class of Worker') and (sidebar_plot == 'Histogram (by Income Class)'):
-    fig_hist = px.histogram(data, y ='Household Head Class of Worker', 
-                   color = 'Income Class', color_discrete_sequence=px.colors.qualitative.Antique)
-    fig_hist.update_layout(
-        title='Household Head Class of Worker',
-        xaxis_title='Class of Worker',
-        yaxis_title='Household Head',
-        font=dict(
-            size=20
-            )
-    )
-    fig_hist.update_layout(barmode='group', yaxis={'categoryorder':'total descending'})
-    st.plotly_chart(fig_hist, use_container_width=True)
 
+# ---- HISTOGRAM ----
+if (sidebar_plot == 'Histogram (by Income Class)') and (sidebar_features == 'Household Head Highest Grade Completed'):
+    if (status == 'Vertical'):
+        histogram_x(sidebar_features)
+    else:
+        histogram_y(sidebar_features)
+    if st.checkbox("VIEW DATASET"):
+        dataset()
+elif (sidebar_plot == 'Histogram (by Income Class)') and (sidebar_features == 'Household Head Job or Business Indicator'):
+    if (status == 'Vertical'):
+        histogram_x(sidebar_features)
+    else:
+        histogram_y(sidebar_features)
+    if st.checkbox("VIEW DATASET"):
+        dataset()
+elif (sidebar_plot == 'Histogram (by Income Class)') and (sidebar_features == 'Household Head Class of Worker'):
+    if (status == 'Vertical'):
+        histogram_x(sidebar_features)
+    else:
+        histogram_y(sidebar_features)
+    if st.checkbox("VIEW DATASET"):
+        dataset()
+        
 # ---- PIE CHART ----
 if (sidebar_features == 'Highest Educational Degree Completed by Household Head') and (sidebar_plot == 'Pie Chart (by Income Class)'):
-
-    # pie chart of grade completed
-    values = data['Household Head Highest Grade Completed'].value_counts()
-    color = data['Household Head Highest Grade Completed'].value_counts().index
+    values = data['Highest Educational Degree Completed by Household Head'].value_counts()
+    color = data['Highest Educational Degree Completed by Household Head'].value_counts().index
     fig_pie = px.pie(data, values=values, color=color, names=color,
              hole=.3,
              color_discrete_sequence=px.colors.qualitative.Antique)
     fig_pie.update_traces(textposition='inside')
-    fig_pie.update_layout(title_text='Highest Educational Degree Completed by Household Head',uniformtext_minsize=15, uniformtext_mode='hide',
+    fig_pie.update_layout(uniformtext_minsize=15, uniformtext_mode='hide',
                   height=1000, title={'font': {'size': 30}}, font={'size': 20})
     fig_pie.update_layout(barmode='group', yaxis={'categoryorder':'total descending'})
-    st.plotly_chart(fig_pie, use_container_width=True)  
-    
+    st.plotly_chart(fig_pie, use_container_width=True)     
     #pie chart grade completed by income class
     # Pie Chart Labels
     plabel = employment_poor['Household Head Highest Grade Completed'].value_counts().index
