@@ -129,13 +129,13 @@ if (sidebar_features == 'Highest Educational Degree Completed by Household Head'
     st.title("🛠 FIXING...")
 
     # pie chart of job indicator
-    values = data['Household Head Job or Business Indicator'].value_counts()
-    color = data['Household Head Job or Business Indicator'].value_counts().index
+    values = data['Household Head Highest Grade Completed'].value_counts()
+    color = data['Household Head Highest Grade Completed'].value_counts().index
     fig_pie = px.pie(data, values=values, color=color, names=color,
              hole=.3,
              color_discrete_sequence=px.colors.qualitative.Antique)
     fig_pie.update_traces(textposition='inside')
-    fig_pie.update_layout(title_text='Household Head Job or Business Indicator by Household Head',uniformtext_minsize=15, uniformtext_mode='hide',
+    fig_pie.update_layout(title_text='Household Head Highest Grade Completed',uniformtext_minsize=15, uniformtext_mode='hide',
                   height=1000, title={'font': {'size': 30}}, font={'size': 20})
     fig_pie.update_layout(barmode='group', yaxis={'categoryorder':'total descending'})
     st.plotly_chart(fig_pie, use_container_width=True)
