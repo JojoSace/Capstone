@@ -182,7 +182,7 @@ elif (sidebar_features == 'Household Head Job or Business Indicator') and (sideb
              color_discrete_sequence=px.colors.qualitative.Antique)
     fig_pie.update_traces(textposition='inside')
     fig_pie.update_layout(uniformtext_minsize=15, uniformtext_mode='hide',
-                  height=1000, title={'font': {'size': 30}}, font={'size': 20})
+                  height=1000)
     fig_pie.update_layout(barmode='group', yaxis={'categoryorder':'total descending'})
     st.plotly_chart(fig_pie, use_container_width=True)
   
@@ -228,7 +228,7 @@ elif (sidebar_features == 'Household Head Class of Worker') and (sidebar_plot ==
              color_discrete_sequence=px.colors.qualitative.Antique)
     fig_pie.update_traces(textposition='inside')
     fig_pie.update_layout(uniformtext_minsize=15, uniformtext_mode='hide',
-                  height=1000, title={'font': {'size': 30}}, font={'size': 20})
+                  height=1000)
     fig_pie.update_layout(barmode='group', yaxis={'categoryorder':'total descending'})
     st.plotly_chart(fig_pie, use_container_width=True)  
     
