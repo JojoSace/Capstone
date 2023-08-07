@@ -35,10 +35,10 @@ employment_middle = data[data['Income Class'] == 'Middle Class']
 employment_rich = data[data['Income Class'] == 'Rich']
 
 # Import geomapping images
-annual_income = Image.open(".\Plots\Income_by_Region.png")
-annual_expenditure = Image.open(".\Plots\Expenditure_by_Region.png")
-monthly_income = Image.open(".\Plots\Monthly_Income_by_Region.png")
-monthly_expenditure = Image.open(".\Plots\Monthly_Expenditure_by_Region.png")
+annual_income = Image.open("Income_by_Region.png")
+annual_expenditure = Image.open("Expenditure_by_Region.png")
+monthly_income = Image.open("Monthly_Income_by_Region.png")
+monthly_expenditure = Image.open("Monthly_Expenditure_by_Region.png")
 
 # ---- FUNCTIONS ----
 
