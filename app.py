@@ -130,7 +130,7 @@ elif (sidebar_plot == 'Histogram (by Income Class)') and (sidebar_features == 'H
         
 # ---- PIE CHART ----
 if (sidebar_features == 'Highest Educational Degree Completed by Household Head') and (sidebar_plot == 'Pie Chart (by Income Class)'):
-    st.write("🛠 FIXING...")
+    st.title("🛠 FIXING...")
   
     values = data['Highest Educational Degree Completed by Household Head'].value_counts()
     color = data['Highest Educational Degree Completed by Household Head'].value_counts().index
@@ -172,7 +172,7 @@ if (sidebar_features == 'Highest Educational Degree Completed by Household Head'
     st.plotly_chart(fig_pie_income, use_container_width=True)
     
 elif (sidebar_features == 'Household Head Job or Business Indicator') and (sidebar_plot == 'Pie Chart (by Income Class)'):
-    st.write("🛠 FIXING...")
+    st.title("🛠 FIXING...")
 
     # pie chart of grade completed
     values = data['Household Head Job or Business Indicator'].value_counts()
@@ -216,7 +216,7 @@ elif (sidebar_features == 'Household Head Job or Business Indicator') and (sideb
     st.plotly_chart(fig_pie_income, use_container_width=True)
     
 elif (sidebar_features == 'Household Head Class of Worker') and (sidebar_plot == 'Pie Chart (by Income Class)'):
-    st.write("🛠 FIXING...")
+    st.title("🛠 FIXING...")
     
     # pie chart of grade completed
     values = data['Household Head Class of Worker'].value_counts()
