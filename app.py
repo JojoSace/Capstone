@@ -170,6 +170,9 @@ if (sidebar_features == 'Highest Educational Degree Completed by Household Head'
                   height=500)
     fig_pie_income.update_layout(barmode='group', yaxis={'categoryorder':'total descending'})
     st.plotly_chart(fig_pie_income, use_container_width=True)
+  
+    if st.checkbox("VIEW DATASET"):
+        dataset()
     
 elif (sidebar_features == 'Household Head Job or Business Indicator') and (sidebar_plot == 'Pie Chart (by Income Class)'):
   
@@ -215,7 +218,10 @@ elif (sidebar_features == 'Household Head Job or Business Indicator') and (sideb
                   height=500)
     fig_pie_income.update_layout(barmode='group', yaxis={'categoryorder':'total descending'})
     st.plotly_chart(fig_pie_income, use_container_width=True)
-    
+  
+    if st.checkbox("VIEW DATASET"):
+        dataset()
+
 elif (sidebar_features == 'Household Head Class of Worker') and (sidebar_plot == 'Pie Chart (by Income Class)'):
     st.title("🛠 FIXING...")
     
@@ -260,7 +266,10 @@ elif (sidebar_features == 'Household Head Class of Worker') and (sidebar_plot ==
     fig_pie_income.update_layout(uniformtext_minsize=10, uniformtext_mode='hide', 
                   height=500)
     fig_pie_income.update_layout(barmode='group', yaxis={'categoryorder':'total descending'})
-    st.plotly_chart(fig_pie_income, use_container_width=True)     
+    st.plotly_chart(fig_pie_income, use_container_width=True)   
+  
+    if st.checkbox("VIEW DATASET"):
+       dataset()
 
 # ---- GEOMAPPING ----
 if (sidebar_features == 'Annual Income') and (sidebar_plot == 'Geomapping (by Region)'):
