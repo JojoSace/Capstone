@@ -127,7 +127,8 @@ elif (sidebar_plot == 'Histogram (by Income Class)') and (sidebar_features == 'H
 # ---- PIE CHART ----
 if (sidebar_features == 'Highest Educational Degree Completed by Household Head') and (sidebar_plot == 'Pie Chart (by Income Class)'):
     st.title("🛠 FIXING...")
-  
+
+    # pie chart of grade completed
     values = data['Highest Educational Degree Completed by Household Head'].value_counts()
     color = data['Highest Educational Degree Completed by Household Head'].value_counts().index
     fig_pie = px.pie(data, values=values, color=color, names=color,
@@ -137,8 +138,8 @@ if (sidebar_features == 'Highest Educational Degree Completed by Household Head'
     fig_pie.update_layout(title_text='Highest Educational Degree Completed by Household Head',uniformtext_minsize=15, uniformtext_mode='hide',
                   height=1000, title={'font': {'size': 30}}, font={'size': 20})
     fig_pie.update_layout(barmode='group', yaxis={'categoryorder':'total descending'})
-    st.plotly_chart(fig_pie, use_container_width=True)
-
+    st.plotly_chart(fig_pie, use_container_width=True)  
+  
     #pie chart grade completed by income class
     # Pie Chart Labels
     plabel = employment_poor['Household Head Highest Grade Completed'].value_counts().index
@@ -171,7 +172,7 @@ if (sidebar_features == 'Highest Educational Degree Completed by Household Head'
 elif (sidebar_features == 'Household Head Job or Business Indicator') and (sidebar_plot == 'Pie Chart (by Income Class)'):
     st.title("🛠 FIXING...")
 
-    # pie chart of grade completed
+    # pie chart of job indicator
     values = data['Household Head Job or Business Indicator'].value_counts()
     color = data['Household Head Job or Business Indicator'].value_counts().index
     fig_pie = px.pie(data, values=values, color=color, names=color,
@@ -215,7 +216,7 @@ elif (sidebar_features == 'Household Head Job or Business Indicator') and (sideb
 elif (sidebar_features == 'Household Head Class of Worker') and (sidebar_plot == 'Pie Chart (by Income Class)'):
     st.title("🛠 FIXING...")
     
-    # pie chart of grade completed
+    # pie chart of head class of worker
     values = data['Household Head Class of Worker'].value_counts()
     color = data['Household Head Class of Worker'].value_counts().index
     fig_pie = px.pie(data, values=values, color=color, names=color,
