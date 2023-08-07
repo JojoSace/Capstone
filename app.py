@@ -126,21 +126,23 @@ elif (sidebar_plot == 'Histogram (by Income Class)') and (sidebar_features == 'H
         
 # ---- PIE CHART ----
 if (sidebar_features == 'Highest Educational Degree Completed by Household Head') and (sidebar_plot == 'Pie Chart (by Income Class)'):
-    st.title("🛠 FIXING...")
 
-    # pie chart of job indicator
+  
+    # pie chart of grade completed
+    st.title('Household Head Highest Grade Completed')
     values = data['Household Head Highest Grade Completed'].value_counts()
     color = data['Household Head Highest Grade Completed'].value_counts().index
     fig_pie = px.pie(data, values=values, color=color, names=color,
              hole=.3,
              color_discrete_sequence=px.colors.qualitative.Antique)
     fig_pie.update_traces(textposition='inside')
-    fig_pie.update_layout(title_text='Household Head Highest Grade Completed',uniformtext_minsize=15, uniformtext_mode='hide',
+    fig_pie.update_layout(uniformtext_minsize=15, uniformtext_mode='hide',
                   height=1000, title={'font': {'size': 30}}, font={'size': 20})
     fig_pie.update_layout(barmode='group', yaxis={'categoryorder':'total descending'})
     st.plotly_chart(fig_pie, use_container_width=True)
   
     #pie chart grade completed by income class
+    st.title('Household Head Highest Grade Completed by Income Class')
     # Pie Chart Labels
     plabel = employment_poor['Household Head Highest Grade Completed'].value_counts().index
     mlabel = employment_middle['Household Head Highest Grade Completed'].value_counts().index
@@ -164,27 +166,28 @@ if (sidebar_features == 'Highest Educational Degree Completed by Household Head'
               1, 3)
 
     fig_pie_income.update_traces(textposition='inside', hole=.3)
-    fig_pie_income.update_layout(title_text='Household Head Highest Grade Completed by Income Class' ,uniformtext_minsize=10, uniformtext_mode='hide', 
+    fig_pie_income.update_layout(uniformtext_minsize=10, uniformtext_mode='hide', 
                   height=500)
     fig_pie_income.update_layout(barmode='group', yaxis={'categoryorder':'total descending'})
     st.plotly_chart(fig_pie_income, use_container_width=True)
     
 elif (sidebar_features == 'Household Head Job or Business Indicator') and (sidebar_plot == 'Pie Chart (by Income Class)'):
-    st.title("🛠 FIXING...")
-
+  
     # pie chart of job indicator
+    st.title('Household Head Job or Business Indicator')
     values = data['Household Head Job or Business Indicator'].value_counts()
     color = data['Household Head Job or Business Indicator'].value_counts().index
     fig_pie = px.pie(data, values=values, color=color, names=color,
              hole=.3,
              color_discrete_sequence=px.colors.qualitative.Antique)
     fig_pie.update_traces(textposition='inside')
-    fig_pie.update_layout(title_text='Household Head Job or Business Indicator by Household Head',uniformtext_minsize=15, uniformtext_mode='hide',
+    fig_pie.update_layout(uniformtext_minsize=15, uniformtext_mode='hide',
                   height=1000, title={'font': {'size': 30}}, font={'size': 20})
     fig_pie.update_layout(barmode='group', yaxis={'categoryorder':'total descending'})
-    st.plotly_chart(fig_pie, use_container_width=True)  
-    
+    st.plotly_chart(fig_pie, use_container_width=True)
+  
     #pie chart with job by income class
+    st.title('Household Head Job or Business Indicator by Income Class')
     # Pie Chart Labels
     plabel = employment_poor['Household Head Job or Business Indicator'].value_counts().index
     mlabel = employment_middle['Household Head Job or Business Indicator'].value_counts().index
@@ -217,18 +220,20 @@ elif (sidebar_features == 'Household Head Class of Worker') and (sidebar_plot ==
     st.title("🛠 FIXING...")
     
     # pie chart of head class of worker
+    st.title('Household Head Class of Worker')
     values = data['Household Head Class of Worker'].value_counts()
     color = data['Household Head Class of Worker'].value_counts().index
     fig_pie = px.pie(data, values=values, color=color, names=color,
              hole=.3,
              color_discrete_sequence=px.colors.qualitative.Antique)
     fig_pie.update_traces(textposition='inside')
-    fig_pie.update_layout(title_text='Household Head Class of Worker by Household Head',uniformtext_minsize=15, uniformtext_mode='hide',
+    fig_pie.update_layout(uniformtext_minsize=15, uniformtext_mode='hide',
                   height=1000, title={'font': {'size': 30}}, font={'size': 20})
     fig_pie.update_layout(barmode='group', yaxis={'categoryorder':'total descending'})
     st.plotly_chart(fig_pie, use_container_width=True)  
     
     #pie chart with job by income class
+    st.title('Household Head Class of Worker by Income Class')
     # Pie Chart Labels
     plabel = employment_poor['Household Head Class of Worker'].value_counts().index
     mlabel = employment_middle['Household Head Class of Worker'].value_counts().index
@@ -252,7 +257,7 @@ elif (sidebar_features == 'Household Head Class of Worker') and (sidebar_plot ==
               1, 3)
 
     fig_pie_income.update_traces(textposition='inside', hole=.3)
-    fig_pie_income.update_layout(title_text='Household Head Job or Business Indicator by Income Class' ,uniformtext_minsize=10, uniformtext_mode='hide', 
+    fig_pie_income.update_layout(uniformtext_minsize=10, uniformtext_mode='hide', 
                   height=500)
     fig_pie_income.update_layout(barmode='group', yaxis={'categoryorder':'total descending'})
     st.plotly_chart(fig_pie_income, use_container_width=True)     
