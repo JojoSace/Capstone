@@ -12,6 +12,8 @@ streamlit run app.py
 # quit
 ctrl-c
 ```
+## Streamlit link: https://capstone-dashboard.streamlit.app
+
 ## Geomapping Plot Reference
 https://github.com/JojoSace/Geomapping_FIES.git
 
