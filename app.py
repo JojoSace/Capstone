@@ -87,7 +87,7 @@ def histogram_y(value):
 # Pie Chart Function
 
 st.set_page_config(page_title="FILIPINO INCOME AND EXPENDITURE DASHBOARD", page_icon="🇵🇭", layout="wide")
-st.title("🇵🇭 FILIPINO INCOME AND EXPENDITURE: MULTIVARIATE ANALYSIS")
+st.title(":flag_philippines: FILIPINO INCOME AND EXPENDITURE: MULTIVARIATE ANALYSIS")
 
 # ---- SIDEBAR ----
 with st.sidebar:
