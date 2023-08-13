@@ -58,7 +58,7 @@ def dataset():
 
 # Histogram Function
 def histogram_x(value):
-    st.title(value, 'by Household Head')
+    st.title(value)
     fig_hist = px.histogram(data, x =value, 
                    color = 'Income Class', color_discrete_sequence=px.colors.qualitative.Antique)
     fig_hist.update_layout(
